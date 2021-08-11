@@ -34,8 +34,9 @@ const Comments = ({ element }: ElementProps) => {
     const deleted = await fetch(`http://localhost:4000/text/${id}/comments`, {
       method: "DELETE",
     });
-    setComments(comments.filter(c => c.comment_id === id));
-  };
+    setComments(comments.filter((c) => c.comment_id !== id));
+  }; // keep ones that dont have the same ID as the one you want to delete
+  // keep where condition is true
 
   useEffect(() => {
     getAllComment();
@@ -59,7 +60,7 @@ const Comments = ({ element }: ElementProps) => {
             <p>
               {com.comment}
               <button
-                onClick={() => deletePaste(element.paste_id)}
+                onClick={() => deletePaste(com.comment_id)}
                 style={{ backgroundColor: "red" }}
               >
                 &times;
