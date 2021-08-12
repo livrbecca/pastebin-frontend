@@ -19,7 +19,8 @@ const Comments = ({ element }: ElementProps) => {
     id: number
   ) => {
     e.preventDefault();
-    const body = { newComment };
+    const body = { comment: newComment };
+    console.log(body);
     const response = await fetch(`http://localhost:4000/text/${id}/comments`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -34,7 +35,7 @@ const Comments = ({ element }: ElementProps) => {
     const deleted = await fetch(`http://localhost:4000/text/${id}/comments`, {
       method: "DELETE",
     });
-    setComments(comments.filter((c) => c.comment_id !== id));
+    setComments(comments.filter((comment) => comment.comment_id !== id));
   }; // keep ones that dont have the same ID as the one you want to delete
   // keep where condition is true
 
