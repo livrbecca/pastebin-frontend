@@ -26,8 +26,9 @@ const Comments = ({ element }: ElementProps) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
-    const jsonComment: CommentsProps = await response.json();
-    setComments([...comments, jsonComment]);
+    getAllComment();
+    // const jsonComment: CommentsProps = await response.json();
+    // setComments((prev) => [...prev, jsonComment]);
     //console.log(newComment);
   };
 
@@ -52,6 +53,8 @@ const Comments = ({ element }: ElementProps) => {
           placeholder="Add new comment"
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
+          //onChange={(e) => setNewComment({comment: e.target.value})}
+          //  onChange={(e) => {setNewComment(e.target.value); value: comment}}
         />
         <button>submit</button>
       </form>
